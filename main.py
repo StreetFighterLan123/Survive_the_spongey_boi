@@ -7,6 +7,24 @@ pygame.init()
 screen = pygame.display.set_mode((800,600))
 pygame.display.set_caption("Survive the Spongey Boi")
 
+#Sounds
+game_over_sound = pygame.mixer.Sound("Game_Over.wav")
+pygame.mixer.music.load("background.wav")
+pygame.mixer.music.play(-1)
+
+#Score
+score_value = 0
+font = pygame.font.Font('freesansbold.ttf', 32)
+
+#Positions of the text.
+textX = 10
+textY = 10
+
+def show_score(x,y):
+    score = font.render("Score: " + str(score_value//1), True, (0,0,0))
+    screen.blit(score, (x,y))
+
+
 #Player
 playerImg = pygame.image.load('monster.png')
 playerX = 370
@@ -70,6 +88,9 @@ while running:
 
     playerX += playerX_change
     playerY += playerY_change
+    
+    enemyX += enemyX_change
+    enemyY += enemyY_change
     #Boundaries
     if playerX <= 0:
         playerX = 0
@@ -79,15 +100,30 @@ while running:
         playerY = 0
     elif playerY > 536:
         playerY = 536
+        
+    if enemyX <= 0:
+        enemyX = 0
+    elif enemyX > 736:
+        enemyX = 736
+    if enemyY <= 0:
+        enemyY = 0
+    elif enemyY > 536:
+        enemyY = 536
 
     if isCollision(enemyX, enemyY, playerX, playerY):
         game_over_text()
         playerX = 10000
         enemyX = 10000
-        time.sleep(1)
+        pygame.mixer.Sound.play(game_over_sound)
+        time.sleep(3.5)
         break
-        
-        
+    #CHANGE THIS LATER
+    enemyX_change = random.randint(-30,30)
+    enemyY_change = random.randint(-30,30)
+    
+    score_value += 0.003
+    #score_value = score_value//1
+    show_score(textX, textY)
     enemy(enemyX, enemyY)
     player(playerX, playerY)
     pygame.display.update()
