@@ -3,6 +3,8 @@ import random
 import math
 import time
 
+
+
 pygame.init()
 screen = pygame.display.set_mode((800,600))
 pygame.display.set_caption("Survive the Spongey Boi")
@@ -39,6 +41,12 @@ enemyY = random.randint(10,400)
 enemyX_change = 0
 enemyY_change = 0
 
+#Coin
+coinImg = pygame.image.load('coin.png')
+coinX = random.randint(0,735)
+coinY = random.randint(0,535)
+
+
 #Font for Game Over
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 
@@ -48,6 +56,11 @@ def player(x,y):
 def enemy(x,y):
     screen.blit(enemyImg, (x,y))
 
+def coin(x,y):
+    screen.blit(coinImg, (x,y))
+
+
+
 def isCollision(enemyX, enemyY, playerX, playerY):
     #Distance formula in Python
     distance = math.sqrt((math.pow(enemyX - playerX,2)) + (math.pow(enemyY - playerY,2))) 
@@ -55,6 +68,14 @@ def isCollision(enemyX, enemyY, playerX, playerY):
         return True
     else: 
         return False
+
+def coin_collision(coinX, coinY, playerX, playerY):
+    distance = math.sqrt((math.pow(coinX - playerX,2)) + (math.pow(coinY - playerY,2))) 
+    if distance < 27:
+        return True
+    else: 
+        return False
+
     
 def game_over_text():
     over_text = over_font.render("GAME OVER", True, (0, 0, 0))
@@ -124,6 +145,7 @@ while running:
     score_value += 0.003
     #score_value = score_value//1
     show_score(textX, textY)
+    coin(coinX, coinY)
     enemy(enemyX, enemyY)
     player(playerX, playerY)
     pygame.display.update()
