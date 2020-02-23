@@ -85,7 +85,7 @@ def game_over_text():
 running = True
 
 while running:
-    screen.fill((255,255,204))
+    screen.fill((255,255,206))
     #Do the for loop here.
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
