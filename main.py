@@ -22,6 +22,8 @@ font = pygame.font.Font('freesansbold.ttf', 32)
 coin_textX = 10
 coin_textY = 10
 
+#ONCE VARIABLES
+5_once = True
 
 def show_coin_score(x,y):
     coins_text = font.render("Coins: " + str(coins_collected), True, (0,0,0))
@@ -38,8 +40,8 @@ playerY_change = 0
 enemyImg = pygame.image.load('sponge.png')
 enemyX = random.randint(0,735)
 enemyY = random.randint(10,400)
-enemyX_change = 0
-enemyY_change = 0
+enemyX_change = 5
+enemyY_change = 5
 
 #Coin
 coinImg = pygame.image.load('coin.png')
@@ -144,8 +146,13 @@ while running:
         coinX = random.randint(0,735)
         coinY = random.randint(0,535)
     #CHANGE THIS LATER
-    enemyX_change = random.randint(-15,15)
-    enemyY_change = random.randint(-15,15)
+    #This is when you first get 5.
+    if coins_collected >= 5 and 5_once = True:
+        enemyX_change += 5
+        enemyY_change += 5
+        5_once = False
+    enemyX_change = enemyX_change
+    enemyY_change = enemyY_change
     
     #score_value = score_value//1
     
