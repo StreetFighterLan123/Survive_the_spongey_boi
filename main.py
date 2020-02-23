@@ -15,17 +15,17 @@ pygame.mixer.music.load("background.wav")
 pygame.mixer.music.play(-1)
 
 #Score
-score_value = 0
+coins_collected = 0
 font = pygame.font.Font('freesansbold.ttf', 32)
-
+#coinfont = pygame.font.Font('freesansbold.ttf', 16)
 #Positions of the text.
-textX = 10
-textY = 10
+coin_textX = 10
+coin_textY = 10
 
-def show_score(x,y):
-    score = font.render("Score: " + str(score_value//1), True, (0,0,0))
-    screen.blit(score, (x,y))
 
+def show_coin_score(x,y):
+    coins_text = font.render("Coins: " + str(coins_collected), True, (0,0,0))
+    screen.blit(coins_text, (x,y))
 
 #Player
 playerImg = pygame.image.load('monster.png')
@@ -71,7 +71,7 @@ def isCollision(enemyX, enemyY, playerX, playerY):
 
 def coin_collision(coinX, coinY, playerX, playerY):
     distance = math.sqrt((math.pow(coinX - playerX,2)) + (math.pow(coinY - playerY,2))) 
-    if distance < 27:
+    if distance < 29:
         return True
     else: 
         return False
@@ -138,13 +138,18 @@ while running:
         pygame.mixer.Sound.play(game_over_sound)
         time.sleep(3.5)
         break
+    if coin_collision(coinX, coinY, playerX, playerY):
+        coins_collected += 1
+        #time.sleep(0.00001)
+        coinX = random.randint(0,735)
+        coinY = random.randint(0,535)
     #CHANGE THIS LATER
-    enemyX_change = random.randint(-30,30)
-    enemyY_change = random.randint(-30,30)
+    enemyX_change = random.randint(-15,15)
+    enemyY_change = random.randint(-15,15)
     
-    score_value += 0.003
     #score_value = score_value//1
-    show_score(textX, textY)
+    
+    show_coin_score(coin_textX, coin_textY)
     coin(coinX, coinY)
     enemy(enemyX, enemyY)
     player(playerX, playerY)
