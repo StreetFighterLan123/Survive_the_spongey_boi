@@ -173,6 +173,7 @@ while running:
         enemyX_change_origin += 5
         enemyY_change_origin +=5
         twenty_once = False
+    #if coin
     enemyX_change = random.randint(-(abs(enemyX_change_origin)), abs((enemyX_change_origin)))
     enemyY_change = random.randint(-(abs(enemyY_change_origin)), (abs(enemyY_change_origin)))
 
