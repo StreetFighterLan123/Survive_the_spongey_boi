@@ -25,6 +25,7 @@ coin_textY = 10
 #ONCE VARIABLES
 five_once = True
 ten_once = True
+fifteen_once = True
 def show_coin_score(x,y):
     coins_text = font.render("Coins: " + str(coins_collected), True, (0,0,0))
     screen.blit(coins_text, (x,y))
@@ -155,6 +156,10 @@ while running:
         enemyX_change_origin += 10
         enemyY_change_origin += 10
         ten_once = False
+    if coins_collected >= 15 and fifteen_once == True:
+        enemyX_change_origin += 10
+        enemyY_change_origin += 10
+        fifteen_once = False
     enemyX_change = random.randint(-(abs(enemyX_change_origin)), abs((enemyX_change_origin)))
     enemyY_change = random.randint(-(abs(enemyY_change_origin)), (abs(enemyY_change_origin)))
 
