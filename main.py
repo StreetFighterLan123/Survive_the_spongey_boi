@@ -23,8 +23,8 @@ coin_textX = 10
 coin_textY = 10
 
 #ONCE VARIABLES
-5_once = True
-
+five_once = True
+ten_once = True
 def show_coin_score(x,y):
     coins_text = font.render("Coins: " + str(coins_collected), True, (0,0,0))
     screen.blit(coins_text, (x,y))
@@ -40,8 +40,8 @@ playerY_change = 0
 enemyImg = pygame.image.load('sponge.png')
 enemyX = random.randint(0,735)
 enemyY = random.randint(10,400)
-enemyX_change = 5
-enemyY_change = 5
+enemyX_change_origin = 5
+enemyY_change_origin = 5
 
 #Coin
 coinImg = pygame.image.load('coin.png')
@@ -112,8 +112,8 @@ while running:
     playerX += playerX_change
     playerY += playerY_change
     
-    enemyX += enemyX_change
-    enemyY += enemyY_change
+    #enemyX += enemyX_change
+   # enemyY += enemyY_change
     #Boundaries
     if playerX <= 0:
         playerX = 0
@@ -147,15 +147,20 @@ while running:
         coinY = random.randint(0,535)
     #CHANGE THIS LATER
     #This is when you first get 5.
-    if coins_collected >= 5 and 5_once = True:
-        enemyX_change += 5
-        enemyY_change += 5
-        5_once = False
-    enemyX_change = enemyX_change
-    enemyY_change = enemyY_change
-    
+    if coins_collected >= 5 and five_once == True:
+        enemyX_change_origin += 5
+        enemyY_change_origin += 5
+        five_once = False
+    if coins_collected >= 10 and ten_once == True:
+        enemyX_change_origin += 10
+        enemyY_change_origin += 10
+        ten_once = False
+    enemyX_change = random.randint(-(abs(enemyX_change_origin)), abs((enemyX_change_origin)))
+    enemyY_change = random.randint(-(abs(enemyY_change_origin)), (abs(enemyY_change_origin)))
+
     #score_value = score_value//1
-    
+    enemyX += enemyX_change
+    enemyY += enemyY_change
     show_coin_score(coin_textX, coin_textY)
     coin(coinX, coinY)
     enemy(enemyX, enemyY)
