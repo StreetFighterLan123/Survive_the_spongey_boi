@@ -10,9 +10,15 @@ screen = pygame.display.set_mode((800,600))
 pygame.display.set_caption("Survive the Spongey Boi")
 
 #Sounds
+
+#Game Over
 game_over_sound = pygame.mixer.Sound("Game_Over.wav")
+#MUSIC - Background
 pygame.mixer.music.load("background.wav")
 pygame.mixer.music.play(-1)
+#Coin_Collected
+coin_sound = pygame.mixer.Sound("coin_sound.wav")
+
 
 #Score
 coins_collected = 0
@@ -146,6 +152,7 @@ while running:
         #time.sleep(0.00001)
         coinX = random.randint(0,735)
         coinY = random.randint(0,535)
+        pygame.mixer.Sound.play(coin_sound)
     #CHANGE THIS LATER
     #This is when you first get 5.
     if coins_collected >= 5 and five_once == True:
