@@ -205,4 +205,5 @@ while running:
     coin(coinX, coinY)
     enemy(enemyX, enemyY)
     player(playerX, playerY)
+    time.sleep(0.001)
     pygame.display.update()
