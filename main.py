@@ -172,12 +172,12 @@ while running:
         enemyY_change_origin += 5
         five_once = False
     if coins_collected >= 10 and ten_once == True:
-        enemyX_change_origin += 10
-        enemyY_change_origin += 10
+        enemyX_change_origin += 5
+        enemyY_change_origin += 5
         ten_once = False
     if coins_collected >= 15 and fifteen_once == True:
-        enemyX_change_origin += 10
-        enemyY_change_origin += 10
+        enemyX_change_origin += 5
+        enemyY_change_origin += 5
         fifteen_once = False
     if coins_collected >= 20 and twenty_once == True:
         enemyX_change_origin += 5
