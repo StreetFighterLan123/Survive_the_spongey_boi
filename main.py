@@ -61,6 +61,10 @@ coinImg = pygame.image.load('coin.png')
 coinX = random.randint(0,735)
 coinY = random.randint(0,535)
 
+#Button when you die
+#buttonImg = pygame.image.load('')
+#buttonX = 
+#buttonY = 
 
 #Font for Game Over
 over_font = pygame.font.Font('freesansbold.ttf', 64)
@@ -76,7 +80,8 @@ def enemy(x,y):
 def coin(x,y):
     screen.blit(coinImg, (x,y))
 
-
+#def button(x,y):
+    #screen.blit(buttonImg(x,y))
 
 def isCollision(enemyX, enemyY, playerX, playerY):
     #Distance formula in Python
