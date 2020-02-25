@@ -11,13 +11,14 @@ pygame.display.set_caption("Survive the Spongey Boi")
 
 #Sounds
 
-#Game Over
 game_over_sound = pygame.mixer.Sound("Game_Over.wav")
 #MUSIC - Background
 pygame.mixer.music.load("background.wav")
 pygame.mixer.music.play(-1)
-#Coin_Collected
 coin_sound = pygame.mixer.Sound("coin_sound.wav")
+
+#Dead or not variable
+dead = False
 
 
 #Score
@@ -33,6 +34,9 @@ five_once = True
 ten_once = True
 fifteen_once = True
 twenty_once = True
+#twentyfive_once is going to make is so that you "beat" the game.
+twentyfive_once = True
+
 
 def show_coin_score(x,y):
     coins_text = font.render("Coins: " + str(coins_collected), True, (0,0,0))
@@ -60,6 +64,8 @@ coinY = random.randint(0,535)
 
 #Font for Game Over
 over_font = pygame.font.Font('freesansbold.ttf', 64)
+#Font for You Win
+win_font = pygame.font.Font('pacfont.regular.ttf', 64)
 
 def player(x,y):
     screen.blit(playerImg, (x,y))
@@ -82,7 +88,7 @@ def isCollision(enemyX, enemyY, playerX, playerY):
 
 def coin_collision(coinX, coinY, playerX, playerY):
     distance = math.sqrt((math.pow(coinX - playerX,2)) + (math.pow(coinY - playerY,2))) 
-    if distance < 29:
+    if distance < 32:
         return True
     else: 
         return False
@@ -91,6 +97,10 @@ def coin_collision(coinX, coinY, playerX, playerY):
 def game_over_text():
     over_text = over_font.render("GAME OVER", True, (0, 0, 0))
     screen.blit(over_text, (200,250))
+
+def win_text():
+    you_win_text = win_font.render("You win! For now...", True, (0,0,0))
+    screen.blit(you_win_text, (200,250))
 
 #Game loop
 running = True
@@ -140,6 +150,8 @@ while running:
         enemyY = 536
 
     if isCollision(enemyX, enemyY, playerX, playerY):
+        dead = True
+        show_coin_score(coin_textX, coin_textY)
         game_over_text()
         playerX = 10000
         enemyX = 10000
@@ -153,8 +165,8 @@ while running:
         coinX = random.randint(0,735)
         coinY = random.randint(0,535)
         pygame.mixer.Sound.play(coin_sound)
-    #CHANGE THIS LATER
-    #This is when you first get 5.
+
+    #This is when you first get 5, etc.
     if coins_collected >= 5 and five_once == True:
         enemyX_change_origin += 5
         enemyY_change_origin += 5
@@ -171,7 +183,18 @@ while running:
         enemyX_change_origin += 5
         enemyY_change_origin +=5
         twenty_once = False
-    #if coin
+    #After 25 something new happens or you "beat" the game
+    if coins_collected >= 25 and twentyfive_once == True:
+        win_text()
+        playerX = 10000
+        enemyX = 10000
+        pygame.display.update()
+        twentyfive_once = False
+        time.sleep(3.5)
+        break
+
+
+
     enemyX_change = random.randint(-(abs(enemyX_change_origin)), abs((enemyX_change_origin)))
     enemyY_change = random.randint(-(abs(enemyY_change_origin)), (abs(enemyY_change_origin)))
 
