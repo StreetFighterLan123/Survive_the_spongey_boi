@@ -103,20 +103,16 @@ while running:
             running = False
         #Do the keydown
         #CHANGE THIS ACCORDING TO THAT GUY ON STACK OVERFLOW BECAUSE THIS METHOD ISN'T GOOD
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                playerX_change = -2
-            if event.key == pygame.K_RIGHT:
-                playerX_change = 2
-            if event.key == pygame.K_UP:
-                playerY_change = -2
-            if event.key == pygame.K_DOWN:
-                playerY_change = 2
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                playerX_change = 0
-            if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                playerY_change = 0
+    keys = pygame.key.get_pressed()
+    playerX_change, playerY_change = 0, 0
+    if keys[pygame.K_LEFT]:
+        playerX_change -= 2
+    if keys[pygame.K_RIGHT]:
+        playerX_change += 2
+    if keys[pygame.K_UP]:
+        playerY_change -= 2
+    if keys[pygame.K_DOWN]:
+        playerY_change += 2
         
 
     playerX += playerX_change
