@@ -102,6 +102,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         #Do the keydown
+        #CHANGE THIS ACCORDING TO THAT GUY ON STACK OVERFLOW BECAUSE THIS METHOD ISN'T GOOD
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 playerX_change = -2
@@ -122,7 +123,7 @@ while running:
     playerY += playerY_change
     
     #enemyX += enemyX_change
-   # enemyY += enemyY_change
+   #enemyY += enemyY_change
     #Boundaries
     if playerX <= 0:
         playerX = 0
@@ -146,6 +147,7 @@ while running:
         game_over_text()
         playerX = 10000
         enemyX = 10000
+        pygame.display.update()
         pygame.mixer.Sound.play(game_over_sound)
         time.sleep(3.5)
         break
@@ -169,7 +171,7 @@ while running:
         enemyX_change_origin += 10
         enemyY_change_origin += 10
         fifteen_once = False
-    if coins_colled >= 20 and twenty_once == True:
+    if coins_collected >= 20 and twenty_once == True:
         enemyX_change_origin += 5
         enemyY_change_origin +=5
         twenty_once = False
