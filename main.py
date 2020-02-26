@@ -62,9 +62,9 @@ coinX = random.randint(0,735)
 coinY = random.randint(0,535)
 
 #Button when you die
-#buttonImg = pygame.image.load('')
-#buttonX = 
-#buttonY = 
+buttonImg = pygame.image.load('secret_button.png')
+buttonX = 736
+buttonY = 530
 
 #Font for Game Over
 over_font = pygame.font.Font('freesansbold.ttf', 64)
@@ -80,8 +80,8 @@ def enemy(x,y):
 def coin(x,y):
     screen.blit(coinImg, (x,y))
 
-#def button(x,y):
-    #screen.blit(buttonImg(x,y))
+def show_button(x,y):
+    screen.blit(buttonImg, (x,y))
     #Make it so that when you click the button, not_revived is false 
 
 def isCollision(enemyX, enemyY, playerX, playerY):
@@ -162,6 +162,7 @@ while running:
         game_over_text()
         playerX = 100000000
         enemyX = 100000000
+        show_button(buttonX, buttonY)
         pygame.display.update()
         pygame.mixer.Sound.play(game_over_sound)
         time.sleep(3.5)
