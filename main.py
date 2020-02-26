@@ -94,7 +94,7 @@ def isCollision(enemyX, enemyY, playerX, playerY):
 
 def coin_collision(coinX, coinY, playerX, playerY):
     distance = math.sqrt((math.pow(coinX - playerX,2)) + (math.pow(coinY - playerY,2))) 
-    if distance < 32:
+    if distance < 38:
         return True
     else: 
         return False
@@ -107,7 +107,7 @@ def game_over_text():
 
 def win_text():
     you_win_text = win_font.render("You win! For now...", True, (0,0,0))
-    screen.blit(you_win_text, (200,250))
+    screen.blit(you_win_text, (115,250))
 
 #Game loop
 running = True
