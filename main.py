@@ -166,7 +166,7 @@ while running:
         pygame.display.update()
         pygame.mixer.Sound.play(game_over_sound)
         time.sleep(3.5)
-        break
+        #break
     if coin_collision(coinX, coinY, playerX, playerY):
         coins_collected += 1
         #time.sleep(0.00001)
