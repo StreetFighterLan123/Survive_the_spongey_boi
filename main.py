@@ -19,7 +19,7 @@ coin_sound = pygame.mixer.Sound("coin_sound.wav")
 
 #Dead or not variable
 dead = False
-
+not_revived = True
 
 #Score
 coins_collected = 0
@@ -69,7 +69,7 @@ coinY = random.randint(0,535)
 #Font for Game Over
 over_font = pygame.font.Font('freesansbold.ttf', 64)
 #Font for You Win
-win_font = pygame.font.Font('pacfont.regular.ttf', 64)
+win_font = pygame.font.Font('freesansbold.ttf', 64)
 
 def player(x,y):
     screen.blit(playerImg, (x,y))
@@ -82,6 +82,7 @@ def coin(x,y):
 
 #def button(x,y):
     #screen.blit(buttonImg(x,y))
+    #Make it so that when you click the button, not_revived is false 
 
 def isCollision(enemyX, enemyY, playerX, playerY):
     #Distance formula in Python
@@ -100,8 +101,9 @@ def coin_collision(coinX, coinY, playerX, playerY):
 
     
 def game_over_text():
-    over_text = over_font.render("GAME OVER", True, (0, 0, 0))
-    screen.blit(over_text, (200,250))
+    if not_revived:
+        over_text = over_font.render("GAME OVER", True, (0, 0, 0))
+        screen.blit(over_text, (200,250))
 
 def win_text():
     you_win_text = win_font.render("You win! For now...", True, (0,0,0))
@@ -158,8 +160,8 @@ while running:
         dead = True
         show_coin_score(coin_textX, coin_textY)
         game_over_text()
-        playerX = 10000
-        enemyX = 10000
+        playerX = 100000000
+        enemyX = 100000000
         pygame.display.update()
         pygame.mixer.Sound.play(game_over_sound)
         time.sleep(3.5)
@@ -186,7 +188,7 @@ while running:
         fifteen_once = False
     if coins_collected >= 20 and twenty_once == True:
         enemyX_change_origin += 5
-        enemyY_change_origin +=5
+        enemyY_change_origin += 5
         twenty_once = False
     #After 25 something new happens or you "beat" the game
     if coins_collected >= 25 and twentyfive_once == True:
