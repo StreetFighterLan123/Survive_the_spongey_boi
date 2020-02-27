@@ -156,7 +156,7 @@ while running:
     elif enemyY > 536:
         enemyY = 536
 
-    if isCollision(enemyX, enemyY, playerX, playerY):
+    if isCollision(enemyX, enemyY, playerX, playerY) and dead = False:
         dead = True
         show_coin_score(coin_textX, coin_textY)
         game_over_text()
@@ -166,7 +166,8 @@ while running:
         pygame.display.update()
         pygame.mixer.Sound.play(game_over_sound)
         time.sleep(3.5)
-        #break
+        while dead:
+            #Add the button press thing here.
     if coin_collision(coinX, coinY, playerX, playerY):
         coins_collected += 1
         #time.sleep(0.00001)
