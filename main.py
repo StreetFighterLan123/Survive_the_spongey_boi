@@ -205,6 +205,7 @@ while running:
     enemyX_change = random.randint(-(abs(enemyX_change_origin)), abs((enemyX_change_origin)))
     enemyY_change = random.randint(-(abs(enemyY_change_origin)), (abs(enemyY_change_origin)))
 
+
     #score_value = score_value//1
     enemyX += enemyX_change
     enemyY += enemyY_change
